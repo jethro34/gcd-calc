@@ -1,0 +1,50 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.so
+*.pyo
+
+# Virtual environment
+venv/
+env/
+*.venv
+
+# Editor & OS files
+*.swp
+*~
+.DS_Store
+Thumbs.db
+
+# Logs & databases
+*.log
+*.sqlite3
+*.db
+
+# Dependencies
+pip-log.txt
+pip-wheel-metadata/
+*.egg-info/
+dist/
+build/
+
+# Configuration & Secrets
+.env
+config.json
+instance/
+
+# Pytest & Coverage
+.coverage
+.tox/
+nosetests.xml
+*.cover
+htmlcov/
+pytest_cache/
+
+# Docker
+docker-compose.override.yml
+.dockerignore
+
+# Cloud & Deployment
+*.pem
+.terraform/
+.cloud/
