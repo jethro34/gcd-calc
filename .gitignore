@@ -1,6 +1,15 @@
 # Prerequisites
 *.d
 
+# Build artifacts
+/build/
+/bin/
+/obj/
+
+# Dependency directories
+/cJSON/build/
+/libmicrohttpd/build/
+
 # Object files
 *.o
 *.ko
@@ -42,6 +51,27 @@
 *.idb
 *.pdb
 
+# IDE or Editor directories
+/.vscode/
+/.idea/
+/*.swp
+*~.nib
+*.suo
+*.user
+*.userosscache
+*.sln
+
+# macOS specific files
+.DS_Store
+
+# Linux-specific files
+*.log
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+
 # Kernel Module Compile Results
 *.mod*
 *.cmd
@@ -50,3 +80,4 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
