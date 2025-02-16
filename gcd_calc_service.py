@@ -25,8 +25,8 @@ def haversine(lat1, lon1, lat2, lon2, unit="km"):
 
 
 # GET endpoint for single distance calculation
-@app.route("/calculate-distance", methods=["GET"])
-def calculate_distance():
+@app.route("/single-distance", methods=["GET"])
+def calculate_single_distance():
     try:
         # get data from query parameters
         lat1 = float(request.args.get("lat1"))
@@ -41,10 +41,42 @@ def calculate_distance():
         # calculate distance
         distance = haversine(lat1, lon1, lat2, lon2, unit)
 
-        return jsonify({"distance": distance, "unit": unit})
+        return jsonify({"distance": distance, "unit": unit}), 200
 
     except (TypeError, ValueError):
-        return jsonify({"error": "Invalid parameters. Ensure all values are numbers."}), 400
+        return jsonify({"error": "Invalid or missing parameter(s)."}), 400
+
+
+# POST endpoint for bulk distance calculation
+@app.route("/bulk-distances", methods=["POST"])
+def calculate_bulk_distances():
+    distances = []
+    try:
+        coord_pairs = request.json.get("coordinate_pairs")
+
+        if not coord_pairs or coord_pairs == []:
+            return jsonify({"error": "Empty request body."}), 400
+
+        for coord_pair in coord_pairs:
+            # get data from query parameters
+            lat1 = float(coord_pair.get("lat1"))
+            lon1 = float(coord_pair.get("lon1"))
+            lat2 = float(coord_pair.get("lat2"))
+            lon2 = float(coord_pair.get("lon2"))
+            unit = coord_pair.get("unit", "km").lower()  # default to km
+
+            if unit not in ["km", "miles"]:
+                return jsonify({"error": "Invalid unit. Use 'km' or 'miles'."}), 400
+
+            # calculate distance
+            distance = haversine(lat1, lon1, lat2, lon2, unit)
+
+            distances.append({"distance": distance, "unit": unit})
+
+        return jsonify({"distances": distances}), 200
+
+    except (TypeError, ValueError):
+        return jsonify({"error": "Invalid or missing parameters."}), 400
 
 
 if __name__ == '__main__':
