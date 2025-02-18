@@ -1,9 +1,14 @@
-# for Google Cloud deployment
+# for video submission
+import json
 from flask import Flask, request, jsonify
 from math import radians, sin, cos, sqrt, atan2
 
-HOST = "0.0.0.0"
+from time import sleep  # for debugging
+DELAY = 2               # for debugging
+
+HOST = '0.0.0.0'
 PORT = 8000
+
 
 app = Flask(__name__)
 
@@ -28,7 +33,13 @@ def haversine(lat1, lon1, lat2, lon2, unit="km"):
 # GET endpoint for single distance calculation
 @app.route("/single-distance", methods=["GET"])
 def calculate_single_distance():
+    sleep(DELAY)   # wait for a few seconds
+
     try:
+        print("\033c", end="")  # clear screen
+        print("\nProcessing GET request with parameters:\n\t", request.args)  # for debugging
+        sleep(DELAY)
+
         # get data from query parameters
         lat1 = float(request.args.get("lat1"))
         lon1 = float(request.args.get("lon1"))
@@ -43,6 +54,8 @@ def calculate_single_distance():
         distance = haversine(lat1, lon1, lat2, lon2, unit)
 
         response_data = {"distance": distance, "unit": unit}
+        print("\nSending response:\n\t", json.dumps(response_data), "\n")  # for debugging
+        sleep(DELAY)
         return jsonify(response_data), 200
 
     except (TypeError, ValueError):
@@ -52,10 +65,16 @@ def calculate_single_distance():
 # POST endpoint for bulk distance calculation
 @app.route("/bulk-distances", methods=["POST"])
 def calculate_bulk_distances():
+    sleep(DELAY)   # wait for a few seconds
+
     distances = []
     try:
         coord_pairs = request.json.get("coordinate_pairs")
         unit = request.json.get("unit", "km").lower()   # default to km
+
+        print("\033c", end="")  # clear screen
+        print("\nProcessing POST request with payload:\n\t", request.json)  # for debugging
+        sleep(DELAY)
 
         if not coord_pairs or coord_pairs == []:
             return jsonify({"error": "No or empty request body."}), 400
@@ -76,6 +95,8 @@ def calculate_bulk_distances():
             distances.append(distance)
 
         response_data = {"distances": distances, "unit": unit}
+        print("\nSending response to POST request:\n\t", json.dumps(response_data), "\n")  # for debugging
+        sleep(DELAY)
         return jsonify(response_data), 200
 
     except (TypeError, ValueError):
