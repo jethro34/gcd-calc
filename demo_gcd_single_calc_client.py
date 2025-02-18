@@ -1,7 +1,8 @@
 import requests
 
-SINGLE_DIST_URL = "http://127.0.0.1:8000/single-distance"
-# SINGLE_DIST_URL = "https://gcdcalculator-1045695994299.us-east4.run.app/single-distance"
+SINGLE_DIST_URL = "http://127.0.0.1:8000"
+# SINGLE_DIST_URL = "https://gcd-calculator-242741576992.us-west1.run.app"
+SINGLE_DIST_ENDPOINT = "/single-distance"
 
 params = {
     "lat1": 43.0481,    # Syracuse, NY latitude
@@ -14,5 +15,5 @@ params = {
 
 print("\nSending GET request with parameters:\n\t", params)
 
-response = requests.get(SINGLE_DIST_URL, params=params)
+response = requests.get(SINGLE_DIST_URL + SINGLE_DIST_ENDPOINT, params=params)
 print("\nResponse received:\n\t", response.json())

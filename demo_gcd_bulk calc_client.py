@@ -1,7 +1,8 @@
 import requests
 
-BULK_DIST_URL = "http://127.0.0.1:8000/bulk-distances"
-# BULK_DIST_URL = "https://gcdcalculator-1045695994299.us-east4.run.app/bulk-distances"
+BULK_DIST_URL = "http://127.0.0.1:8000"
+# BULK_DIST_URL = "https://gcd-calculator-242741576992.us-west1.run.app"
+BULK_DIST_ENDPOINT = "/bulk-distances"
 
 payload = {
     "coordinate_pairs": [
@@ -23,5 +24,5 @@ payload = {
 
 print("\nSending POST request with payload:\n\t", payload)
 
-response = requests.post(BULK_DIST_URL, json=payload)
+response = requests.post(BULK_DIST_URL + BULK_DIST_ENDPOINT, json=payload)
 print("\nResponse received:\n\t", response.json())
