@@ -22,7 +22,8 @@ payload = {
     # "unit": "miles"
 }
 
+print("\033c", end="")  # clear screen
 print("\nSending POST request with payload:\n\t", payload)
 
 response = requests.post(BULK_DIST_URL + BULK_DIST_ENDPOINT, json=payload)
-print("\nResponse received:\n\t", response.json())
+print("\nResponse received:\n\t", response.json(), "\n")

@@ -13,7 +13,8 @@ params = {
     # "unit": "km"
 }
 
+print("\033c", end="")  # clear screen
 print("\nSending GET request with parameters:\n\t", params)
 
 response = requests.get(SINGLE_DIST_URL + SINGLE_DIST_ENDPOINT, params=params)
-print("\nResponse received:\n\t", response.json())
+print("\nResponse received:\n\t", response.json(), "\n")
