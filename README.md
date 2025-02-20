@@ -8,7 +8,8 @@ return the great-circle distance between them
 ## How to request data:
 ### For single-distance calculation (one distance between two points):
 Make an HTTP GET request to https://gcd-calculator-242741576992.us-west1.run.app/single-distance
-<br>with a JSON dict with keys: lat1, lon1, lat2, lon2, unit (optional). Query parameters are sent in the URL.
+<br>with a JSON dict with keys: lat1, lon1, lat2, lon2, unit (optional).
+<br>Query parameters are sent in the URL.
 <br>Example call (python):
 
 ```python
@@ -18,7 +19,8 @@ response = requests.get("https://gcd-calculator-242741576992.us-west1.run.app/si
 
 ### For bulk-distance calculation (distances between pairs of points):
 Make an HTTP POST request to https://gcd-calculator-242741576992.us-west1.run.app/bulk-distances
-<br>with a JSON dict with keys: coordinate_pairs, unit (optional); where coordinate_pairs is a list of dict with keys: lat1, lon1, lat2, lon2.
+<br>with a JSON dict with keys: coordinate_pairs, unit (optional);
+<br>coordinate_pairs is itself a list of dicts with keys: lat1, lon1, lat2, lon2.
 <br>JSON goes in the payload.
 <br>Example call (python):
 
