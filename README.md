@@ -58,4 +58,4 @@ How to receive data:
       distances = response.json()["distances"]  # list of floats
       unit = response.json()["unit"]  # string
 
-[UML Sequence Diagram](/trianaj_cs361_A8_UML.png)
+[UML Sequence Diagram](/trianaj_cs361_A8_uml.png)
