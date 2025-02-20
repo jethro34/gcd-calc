@@ -8,7 +8,7 @@ return the great-circle distance between them
 ## How to request data:
 ### For single-distance calculation (one distance between two points):
 Make an HTTP GET request to https://gcd-calculator-242741576992.us-west1.run.app/single-distance
-<br>with a JSON dict with keys: lat1, lon1, lat2, lon2, unit (optional).
+<br>with a JSON dictionary with keys: lat1, lon1, lat2, lon2 (floats), and unit (string, optional).
 <br>Query parameters are sent in the URL.
 <br>Example call (python):
 
@@ -19,8 +19,8 @@ response = requests.get("https://gcd-calculator-242741576992.us-west1.run.app/si
 
 ### For bulk-distance calculation (distances between pairs of points):
 Make an HTTP POST request to https://gcd-calculator-242741576992.us-west1.run.app/bulk-distances
-<br>with a JSON dict with keys: coordinate_pairs, unit (optional);
-<br>coordinate_pairs is itself a list of dicts with keys: lat1, lon1, lat2, lon2.
+<br>with a JSON dictionary with keys: coordinate_pairs (list of dictionaries), unit (string, optional);
+<br>coordinate_pairs is itself a list of dictionaries with keys: lat1, lon1, lat2, lon2 (floats).
 <br>JSON goes in the payload.
 <br>Example call (python):
 
@@ -37,7 +37,7 @@ response = requests.post("https://gcd-calculator-242741576992.us-west1.run.app/b
   
 ## How to receive data:
 ### For single-distance calculation:
-The GET request response contains a JSON dictionary with keys: "distance" and "unit":
+The GET request response contains a JSON dictionary with keys: "distance" (float) and "unit" (string):
 
 ```json
 {
@@ -55,8 +55,7 @@ unit = response.json()["unit"]  # string
 ```
   
 ### For bulk-distance calculation:
-The POST request response contains a JSON dictionary with keys: "distances" and "unit",
-<br>where "distances" is a list of floats:
+The POST request response contains a JSON dictionary with keys: "distances" (list of floats) and "unit" (string),
 
 ```json
 {
