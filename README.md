@@ -72,4 +72,5 @@ distances = response.json()["distances"]  # list of floats
 unit = response.json()["unit"]  # string
 ```
 
-## [UML Sequence Diagram](/trianaj_cs361_A8_uml.png)
+## UML Sequence Diagram
+![UML Sequence Diagram](/trianaj_cs361_A8_uml.png)
